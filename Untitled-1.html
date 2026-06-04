@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio ZAMPIERI Ethan</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* ── MODAL OVERLAY ── */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(20, 0, 35, 0.82);
+            backdrop-filter: blur(6px);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .modal-overlay.active {
+            display: flex;
+            animation: fadeIn 0.25s ease;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to   { opacity: 1; }
+        }
+ 
+        /* ── MODAL BOX ── */
+        .modal {
+            background: linear-gradient(145deg, rgba(80, 0, 100, 0.92), rgba(50, 0, 70, 0.97));
+            border: 1px solid rgba(200, 100, 255, 0.3);
+            border-radius: 22px;
+            box-shadow: 0 30px 80px rgba(120, 0, 160, 0.6), 0 0 0 1px rgba(255,255,255,0.05);
+            max-width: 760px;
+            width: 100%;
+            max-height: 88vh;
+            overflow-y: auto;
+            padding: 36px 40px 32px;
+            color: ghostwhite;
+            position: relative;
+            animation: slideUp 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        @keyframes slideUp {
+            from { transform: translateY(40px) scale(0.96); opacity: 0; }
+            to   { transform: translateY(0)    scale(1);    opacity: 1; }
+        }
+ 
+        /* scrollbar dans la modale */
+        .modal::-webkit-scrollbar { width: 5px; }
+        .modal::-webkit-scrollbar-track { background: transparent; }
+        .modal::-webkit-scrollbar-thumb { background: rgba(200,100,255,0.4); border-radius: 10px; }
+ 
+        /* ── CLOSE BUTTON ── */
+        .modal-close {
+            position: absolute;
+            top: 16px; right: 20px;
+            background: rgba(200,100,255,0.15);
+            border: 1px solid rgba(200,100,255,0.3);
+            color: ghostwhite;
+            width: 34px; height: 34px;
+            border-radius: 50%;
+            font-size: 1.1rem;
+            cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            transition: background 0.2s, transform 0.2s;
+        }
+        .modal-close:hover { background: rgba(200,100,255,0.35); transform: scale(1.1); }
+ 
+        /* ── MODAL CONTENT ── */
+        .modal h2 {
+            margin: 0 0 18px 0;
+            font-size: 1.7rem;
+            font-variant: small-caps;
+            border-bottom: 1px solid rgba(200,100,255,0.35);
+            padding-bottom: 10px;
+        }
+        .modal-body {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .modal img {
+            width: 100%;
+            max-height: 220px;
+            border-radius: 12px;
+            margin: 0;
+            object-fit: cover;
+            object-position: top;
+        }
+        .modal-cols {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        .modal p { font-size: 1rem; line-height: 1.6; margin: 0 0 12px; }
+        .modal ul { padding-left: 20px; margin: 6px 0 0; }
+        .modal ul li { margin-bottom: 6px; line-height: 1.5; }
+        .modal .tag {
+            display: inline-block;
+            background: rgba(200,100,255,0.2);
+            border: 1px solid rgba(200,100,255,0.35);
+            border-radius: 20px;
+            padding: 3px 12px;
+            font-size: 0.82rem;
+            margin: 4px 4px 0 0;
+        }
+        .modal .section-label {
+            font-weight: 700;
+            font-variant: small-caps;
+            font-size: 0.9rem;
+            color: rgba(220,150,255,0.9);
+            margin: 14px 0 5px;
+            letter-spacing: 0.05em;
+        }
+        .modal-info-col { display: flex; flex-direction: column; gap: 0; }
+ 
+        /* ── PROJECT CARDS – cursor pointer ── */
+        section .proj-link {
+            cursor: pointer;
+            transition: transform 0.18s ease, box-shadow 0.18s ease;
+            border-radius: 12px;
+            padding: 6px;
+            margin: -6px;
+        }
+        section .proj-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 28px rgba(180,0,180,0.25);
+        }
+        section .proj-link .more {
+            color: rgba(220,150,255,0.9);
+            font-size: 0.88rem;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            margin-top: 4px;
+        }
+        section .proj-link .more::after { content: " →"; }
+    </style>
+</head>
+<body>
+ 
+    <!-- En-tête -->
+    <header>
+        <h1>Portfolio</h1>
+        <nav>
+            <ul>
+                <li><a href="Untitled-1.html">Accueil</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="Download_cv.html">Mon cv</a></li>
+            </ul>
+        </nav>
+    </header>
+ 
+    <!-- Contenu principal -->
+    <main>
+        <section class="hero">
+            <img src="Vagues_de_bleu_profond.png" alt="Ethan ZAMPIERI">
+            <div class="info">
+                <h2>Ethan ZAMPIERI</h2>
+                <p>Envie de faire plus tard développeur.</p>
+            </div>
+        </section>
+ 
+        <section class="description">
+            <p>Je m'appel Ethan ZAMPIERI actuellement étudiant de 1ère année du BUT informatique.</p>
+            <p>Langages connu (tous débutant) :</p>
+            <ul>
+                <li>JAVA / JAVAFX</li>
+                <li>SQL</li>
+                <li>HTML / CSS</li>
+                <li>SHELL</li>
+            </ul>
+        </section>
+ 
+        <!-- ── Projet Chatbot ── -->
+        <section>
+            <h2>Projets réalisés</h2>
+            <h3 class="projet">Chatbot</h3>
+            <div class="proj-link" onclick="openModal('modal-chatbot')" role="button" tabindex="0" aria-label="Voir détails Chatbot">
+                <div>
+                    <p class="map">Code permettant de répondre à des questions prédéfinies de culture générale.</p>
+                    <ul>
+                        <li>Réalisation en duo</li>
+                        <li>Sur une période de 5 homme·jours</li>
+                        <li>Langage : JAVA</li>
+                    </ul>
+                    <span class="more">plus de détails</span>
+                </div>
+                <img src="image/chatbotRep.png" alt="Chatbot" height="150px" width="200px">
+            </div>
+        </section>
+ 
+        <!-- ── Projet Orange ── -->
+        <section>
+            <h3 class="projet">Site factice de Orange Business</h3>
+            <div class="proj-link" onclick="openModal('modal-orange')" role="button" tabindex="0" aria-label="Voir détails Orange">
+                <img src="image/Orange.png" alt="Orange" height="100px" width="150px">
+                <div>
+                    <p>Site fait en équipe afin de changer le style pour s'accommoder aux goûts des 3ème pour des stages.</p>
+                    <ul>
+                        <li>Réalisation en équipe de 4 personnes</li>
+                        <li>Sur une période ≈ 64 homme·heures</li>
+                        <li>Langage : HTML / CSS / JS</li>
+                    </ul>
+                    <span class="more">plus de détails</span>
+                </div>
+            </div>
+        </section>
+ 
+        <!-- ── Projet VM ── -->
+        <section>
+            <h3 class="projet">Installation d'une machine virtuelle</h3>
+            <div class="proj-link" onclick="openModal('modal-vm')" role="button" tabindex="0" aria-label="Voir détails VM">
+                <div class="P3_desc">
+                    <p>Mise en place et confection d'un guide d'installation d'une machine virtuelle.</p>
+                    <ul>
+                        <li>Réalisation en solitaire</li>
+                        <li>Sur une période de 3 homme·heures</li>
+                        <li>Langage : Shell</li>
+                    </ul>
+                    <span class="more">plus de détails</span>
+                </div>
+                <img src="image/screen7.png" alt="VM" height="100px" width="150px">
+            </div>
+        </section>
+ 
+        <!-- ── Projet BDD ── -->
+        <section>
+            <h3 class="projet">Gestion d'une base de données</h3>
+            <div class="proj-link" onclick="openModal('modal-bdd')" role="button" tabindex="0" aria-label="Voir détails BDD">
+                <img src="image/BD.webp" alt="Base de données" height="100px" width="150px">
+                <div>
+                    <p>Création et gestion de base de données d'agence de bateaux à voile.</p>
+                    <ul>
+                        <li>Réalisation en duo</li>
+                        <li>Sur une période ≈ 10 homme·heures</li>
+                        <li>Langage : SQL (dBeaver)</li>
+                    </ul>
+                    <span class="more">plus de détails</span>
+                </div>
+            </div>
+        </section>
+    </main>
+ 
+    <!-- Pied de page -->
+    <footer>
+        <div id="contact">
+            <h2>Autres pages :</h2>
+            <ul>
+                <li><a href="#top">Home page</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="Download_cv.html">Mon CV</a></li>
+            </ul>
+        </div>
+        <div>
+            <h2>Moyen de contact :</h2>
+            <p>Mail personnel : nahte73300@gmail.com</p>
+            <p>Mail universitaire : ethan.zampieri@etu.univ-grenoble-alpes.fr</p>
+            <p>Git : </p>
+            <p>Tél : 00.00.00.00.00</p>
+        </div>
+    </footer>
+ 
+ 
+    <!-- ════════════════════════════════════════════
+         MODALES
+    ═══════════════════════════════════════════════ -->
+ 
+    <!-- Modale Chatbot -->
+    <div class="modal-overlay" id="modal-chatbot" onclick="closeOnOverlay(event, 'modal-chatbot')">
+        <div class="modal" role="dialog" aria-label="Détails Chatbot">
+            <button class="modal-close" onclick="closeModal('modal-chatbot')" aria-label="Fermer">✕</button>
+            <h2>Chatbot</h2>
+            <div class="modal-body">
+                <img src="image/chatbotRep.png" alt="Chatbot">
+                <div class="modal-cols">
+                    <div>
+                        <p>Programme permettant de répondre à des questions de culture générale en analysant les mots-clés pour trouver la réponse la plus pertinente dans un fichier texte.</p>
+                        <div class="section-label">Stack</div>
+                        <span class="tag">Java</span>
+                        <span class="tag">Fichiers texte</span>
+                        <span class="tag">Duo</span>
+                        <span class="tag">5 homme·jours</span>
+                    </div>
+                    <div>
+                        <div class="section-label">Compétences acquises</div>
+                        <ul>
+                            <li>Travail en équipe</li>
+                            <li>Amélioration de la logique de code</li>
+                            <li>Traitement du langage naturel (basique)</li>
+                        </ul>
+                        <div class="section-label">Ma participation</div>
+                        <ul>
+                            <li>Recherche par mots-clés de la question</li>
+                            <li>Choix de la réponse la plus « fit »</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+ 
+    <!-- Modale Orange -->
+    <div class="modal-overlay" id="modal-orange" onclick="closeOnOverlay(event, 'modal-orange')">
+        <div class="modal" role="dialog" aria-label="Détails Orange Business">
+            <button class="modal-close" onclick="closeModal('modal-orange')" aria-label="Fermer">✕</button>
+            <h2>Site Orange Business</h2>
+            <div class="modal-body">
+                <img src="image/Orange.png" alt="Orange">
+                <div class="modal-cols">
+                    <div>
+                        <p>Site factice d'Orange Business réalisé en équipe, avec pour objectif de revisiter le design pour le rendre attractif dans le cadre de recherches de stage de 3ème.</p>
+                        <div class="section-label">Stack</div>
+                        <span class="tag">HTML</span>
+                        <span class="tag">CSS</span>
+                        <span class="tag">JavaScript</span>
+                        <span class="tag">Équipe ×4</span>
+                        <span class="tag">≈ 64h</span>
+                    </div>
+                    <div>
+                        <div class="section-label">Compétences acquises</div>
+                        <ul>
+                            <li>Travail en équipe (4 personnes)</li>
+                            <li>Intégration web HTML / CSS / JS</li>
+                            <li>Organisation et répartition des tâches</li>
+                        </ul>
+                        <div class="section-label">Ma participation</div>
+                        <ul>
+                            <li>Intégration de pages HTML/CSS</li>
+                            <li>Participation aux choix de design</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+ 
+    <!-- Modale VM -->
+    <div class="modal-overlay" id="modal-vm" onclick="closeOnOverlay(event, 'modal-vm')">
+        <div class="modal" role="dialog" aria-label="Détails Machine Virtuelle">
+            <button class="modal-close" onclick="closeModal('modal-vm')" aria-label="Fermer">✕</button>
+            <h2>Installation d'une VM</h2>
+            <div class="modal-body">
+                <img src="image/screen7.png" alt="VM">
+                <div class="modal-cols">
+                    <div>
+                        <p>Mise en place et rédaction d'un guide complet d'installation d'une machine virtuelle, incluant la configuration réseau et les premiers paramétrages système.</p>
+                        <div class="section-label">Stack</div>
+                        <span class="tag">Shell</span>
+                        <span class="tag">Linux</span>
+                        <span class="tag">Solo</span>
+                        <span class="tag">3h</span>
+                    </div>
+                    <div>
+                        <div class="section-label">Compétences acquises</div>
+                        <ul>
+                            <li>Administration système de base</li>
+                            <li>Scripting Shell</li>
+                            <li>Rédaction de documentation technique</li>
+                        </ul>
+                        <div class="section-label">Ma participation</div>
+                        <ul>
+                            <li>Réalisation complète en autonomie</li>
+                            <li>Écriture du guide d'installation</li>
+                            <li>Scripts Shell d'automatisation</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+ 
+    <!-- Modale BDD -->
+    <div class="modal-overlay" id="modal-bdd" onclick="closeOnOverlay(event, 'modal-bdd')">
+        <div class="modal" role="dialog" aria-label="Détails Base de données">
+            <button class="modal-close" onclick="closeModal('modal-bdd')" aria-label="Fermer">✕</button>
+            <h2>Gestion d'une base de données</h2>
+            <div class="modal-body">
+                <img src="image/BD.webp" alt="Base de données">
+                <div class="modal-cols">
+                    <div>
+                        <p>Création et gestion d'une base de données pour une agence de bateaux à voile : modélisation, création des tables, requêtes et relations entre entités.</p>
+                        <div class="section-label">Stack</div>
+                        <span class="tag">SQL</span>
+                        <span class="tag">dBeaver</span>
+                        <span class="tag">Duo</span>
+                        <span class="tag">≈ 10h</span>
+                    </div>
+                    <div>
+                        <div class="section-label">Compétences acquises</div>
+                        <ul>
+                            <li>Modélisation BDD (MCD / MLD)</li>
+                            <li>Requêtes SQL avancées</li>
+                            <li>Utilisation de dBeaver</li>
+                        </ul>
+                        <div class="section-label">Ma participation</div>
+                        <ul>
+                            <li>Création des tables et contraintes</li>
+                            <li>Rédaction des requêtes métier</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+ 
+ 
+    <script>
+        function openModal(id) {
+            const overlay = document.getElementById(id);
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+ 
+        function closeModal(id) {
+            const overlay = document.getElementById(id);
+            overlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+ 
+        function closeOnOverlay(event, id) {
+            if (event.target === event.currentTarget) closeModal(id);
+        }
+ 
+        // Fermer avec Escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.modal-overlay.active').forEach(el => {
+                    el.classList.remove('active');
+                });
+                document.body.style.overflow = '';
+            }
+        });
+ 
+        // Accessibilité clavier sur les cartes projet
+        document.querySelectorAll('.proj-link').forEach(el => {
+            el.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    el.click();
+                }
+            });
+        });
+    </script>
+ 
+</body>
+</html>
