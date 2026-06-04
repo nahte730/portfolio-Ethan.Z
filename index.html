@@ -138,6 +138,22 @@
             gap: 4px;
             margin-top: 4px;
         }
+        .btn-diplomes {
+            margin: 16px 0 0 10%;
+            padding: 10px 24px;
+            background: rgba(200, 100, 255, 0.2);
+            border: 1px solid rgba(200, 100, 255, 0.45);
+            border-radius: 20px;
+            color: ghostwhite;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.15s;
+        }
+.btn-diplomes:hover {
+    background: rgba(200, 100, 255, 0.38);
+    transform: translateY(-2px);
+}
         section .proj-link .more::after { content: " →"; }
     </style>
 </head>
@@ -161,19 +177,23 @@
             <img src="Vagues_de_bleu_profond.png" alt="Ethan ZAMPIERI">
             <div class="info">
                 <h2>Ethan ZAMPIERI</h2>
-                <p>Envie de faire plus tard développeur.</p>
+                <p>Étudiant en BUT Informatique · Futur développeur web & logiciel</p>
             </div>
         </section>
  
         <section class="description">
-            <p>Je m'appel Ethan ZAMPIERI actuellement étudiant de 1ère année du BUT informatique.</p>
-            <p>Langages connu (tous débutant) :</p>
+            <p>Je m'appelle Ethan ZAMPIERI, étudiant en 1ère année de BUT Informatique 
+            à l'Université Grenoble Alpes. Je me destine au développement web et logiciel, 
+            domaines dans lesquels je développe mes compétences à travers mes projets académiques.</p>
+            <p>Langages pratiqués :</p>
             <ul>
-                <li>JAVA / JAVAFX</li>
-                <li>SQL</li>
-                <li>HTML / CSS</li>
-                <li>SHELL</li>
+                <li>JAVA / JavaFX — logique applicative & interfaces</li>
+                <li>SQL — gestion de bases de données</li>
+                <li>HTML / CSS — intégration web front-end</li>
+                <li>Shell — administration système & scripts</li>
             </ul>
+            
+            <button class="btn-diplomes" onclick="openModal('modal-diplomes')">🎓 Mes diplômes</button>
         </section>
  
         <!-- ── Projet Chatbot ── -->
@@ -260,8 +280,7 @@
             <h2>Moyen de contact :</h2>
             <p>Mail personnel : nahte73300@gmail.com</p>
             <p>Mail universitaire : ethan.zampieri@etu.univ-grenoble-alpes.fr</p>
-            <p>Git : </p>
-            <p>Tél : 00.00.00.00.00</p>
+            <p>Git : <a href="https://github.com/nahte730" target="_blank">github.com/nahte730</a></p>
         </div>
     </footer>
  
@@ -269,7 +288,30 @@
     <!-- ════════════════════════════════════════════
          MODALES
     ═══════════════════════════════════════════════ -->
- 
+
+
+    <div class="modal-overlay" id="modal-diplomes" onclick="closeOnOverlay(event, 'modal-diplomes')">
+        <div class="modal" role="dialog" aria-label="Diplômes">
+            <button class="modal-close" onclick="closeModal('modal-diplomes')" aria-label="Fermer">✕</button>
+            <h2>Diplômes obtenus</h2>
+            <div class="modal-body">
+                <div class="modal-cols">
+                    <div class="modal-info-col">
+                        <div class="section-label">Brevet des collèges</div>
+                        <p>Obtenu avec mention <strong>Général</strong></p>
+                        <span class="tag">Collège</span>
+                    </div>
+                    <div class="modal-info-col">
+                        <div class="section-label">Baccalauréat STI2D</div>
+                        <p>Obtenu avec mention — moyenne de <strong>12/20</strong></p>
+                        <span class="tag">Lycée</span>
+                        <span class="tag">Sciences & Technologies</span>
+                        <span class="tag">Ingénierie & Développement Durable</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- Modale Chatbot -->
     <div class="modal-overlay" id="modal-chatbot" onclick="closeOnOverlay(event, 'modal-chatbot')">
         <div class="modal" role="dialog" aria-label="Détails Chatbot">
