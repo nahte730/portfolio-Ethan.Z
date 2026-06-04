@@ -64,6 +64,18 @@ main section img {
     max-width: 90%;
 }
 
+main section {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+main section img {
+    margin: 0;
+    width: auto;
+    max-width: 90%;
+}
+
 
 
 
